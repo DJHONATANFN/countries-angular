@@ -1,0 +1,27 @@
+import { catchError } from 'rxjs';
+import { Component } from '@angular/core';
+import { Country } from '../../interfaces/Country';
+import { CountriesService } from '../../services/countries.service';
+
+@Component({
+  selector: 'app-by-region-page',
+  templateUrl: './by-region-page.component.html',
+  styles: [
+  ]
+})
+export class ByRegionPageComponent {
+
+  public busqueda: string = "Buscar por Region";
+  public countries: Country[] = [];
+
+  constructor(private countryService: CountriesService) { }
+
+  searchByRegion(term: string) {
+    this.countryService.searchRegion(term)
+      .subscribe({
+        next: (countries) => {
+          this.countries = countries;
+        }
+      })
+  }
+}
