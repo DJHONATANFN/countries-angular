@@ -12,15 +12,17 @@ export class ByCountryPageComponent {
 
   public busqueda: string = "Buscar por Pais";
   public countries: Country[] = [];
+  public isLoading:boolean= false;
 
   constructor(private countryService: CountriesService) { }
 
   searchByPais(term: string) {
-
+    this.isLoading= true;
     this.countryService.searchCountry(term)
       .subscribe({
         next: (countries) => {
           this.countries = countries;
+          this.isLoading= false;
         }
       })
 

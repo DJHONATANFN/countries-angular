@@ -1,5 +1,15 @@
+<!--PRIMERA FORMA CON PRESIONAR ENTER DESPUES DE ESCRIBIR Y ENVIA LA PETICION
+
+  <input type="text"
+  class="form-control"
+  placeholder="{{placeholder}}"
+  (keyup.enter)="emitValue(txtInput.value)"
+  #txtInput>
+
+-->
+<!-- SEGUNDA FORMA USANDO DEBOUNCER    -->
 <input type="text"
 class="form-control"
 placeholder="{{placeholder}}"
-(keyup.enter)="emitValue(txtInput.value)"
+(keyup)="onKeyPress(txtInput.value)"
 #txtInput>

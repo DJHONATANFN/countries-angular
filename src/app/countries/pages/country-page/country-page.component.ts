@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CountriesService } from '../../services/countries.service';
-import { switchMap } from 'rxjs';
+import { Subscription, switchMap } from 'rxjs';
 import { Country } from '../../interfaces/Country';
 
 @Component({
@@ -10,16 +10,20 @@ import { Country } from '../../interfaces/Country';
   styles: [
   ]
 })
-export class CountryPageComponent implements OnInit {
-
+export class CountryPageComponent implements OnInit, OnDestroy {
 
   public country!:Country;
+  private countrySuscription?: Subscription;
 
   constructor(private activatedRoute:ActivatedRoute, private countriesService:CountriesService,
   private router:Router){}
 
+  ngOnDestroy(): void {
+    this.countrySuscription?.unsubscribe();
+  }
+
   ngOnInit(): void {
-    this.activatedRoute.params
+    this.countrySuscription= this.activatedRoute.params
     .pipe(
       switchMap(({id})=>this.countriesService.searchCountryByCode(id))
     ).subscribe(country=>{
