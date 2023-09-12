@@ -17,6 +17,8 @@ export class SearchBoxComponent implements OnInit, OnDestroy {
   public onValue: EventEmitter<string> = new EventEmitter();
   @Output()
   public onDebounce: EventEmitter<string> = new EventEmitter();
+  @Input()
+  public initialValue: string = "";
 
   ngOnInit(): void {
     this.debounceSuscription = this.debounce

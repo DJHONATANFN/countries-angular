@@ -8,8 +8,5 @@
 
 -->
 <!-- SEGUNDA FORMA USANDO DEBOUNCER    -->
-<input type="text"
-class="form-control"
-placeholder="{{placeholder}}"
-(keyup)="onKeyPress(txtInput.value)"
-#txtInput>
+<input type="text" class="form-control" placeholder="{{placeholder}}" [value]="initialValue"
+  (keyup)="onKeyPress(txtInput.value)" #txtInput>
